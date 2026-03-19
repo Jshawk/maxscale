@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MaxScales — Web Design & Development</title>
+  <meta name="description" content="MaxScales builds fast, beautiful websites that grow your business. Custom web design and development." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:   #0a0a0a;
+      --white:   #ffffff;
+      --accent:  #6c47ff;
+      --accent2: #a78bfa;
+      --gray-50: #f8f8fc;
+      --gray-100:#f0effe;
+      --gray-300:#c4b5fd;
+      --gray-500:#6b7280;
+      --gray-700:#374151;
+      --radius:  14px;
+      --transition: 0.25s ease;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--black);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 6vw;
+      height: 68px;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(108,71,255,0.08);
+    }
+
+    .nav-logo {
+      font-size: 1.35rem;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      color: var(--black);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--gray-700);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    .nav-cta {
+      background: var(--accent);
+      color: var(--white) !important;
+      padding: 0.5rem 1.2rem;
+      border-radius: 8px;
+      font-weight: 700 !important;
+      transition: background var(--transition), transform var(--transition) !important;
+    }
+    .nav-cta:hover { background: #5535e0 !important; transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 6vw 80px;
+      background: linear-gradient(160deg, var(--gray-100) 0%, var(--white) 60%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(108,71,255,0.12) 0%, transparent 70%);
+      top: -150px; right: -150px;
+      pointer-events: none;
+    }
+    #hero::after {
+      content: '';
+      position: absolute;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(167,139,250,0.1) 0%, transparent 70%);
+      bottom: -100px; left: -100px;
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--gray-100);
+      border: 1px solid rgba(108,71,255,0.2);
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 900;
+      line-height: 1.08;
+      letter-spacing: -2px;
+      max-width: 820px;
+      margin: 0 auto 1.5rem;
+    }
+    .hero-title .highlight {
+      color: var(--accent);
+      position: relative;
+    }
+
+    .hero-sub {
+      font-size: 1.15rem;
+      color: var(--gray-500);
+      max-width: 520px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--white);
+      padding: 0.9rem 2rem;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+      box-shadow: 0 4px 24px rgba(108,71,255,0.3);
+    }
+    .btn-primary:hover {
+      background: #5535e0;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(108,71,255,0.4);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--black);
+      padding: 0.9rem 2rem;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1.5px solid #e0e0e0;
+      transition: border-color var(--transition), transform var(--transition);
+    }
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+      justify-content: center;
+      margin-top: 4rem;
+      flex-wrap: wrap;
+    }
+    .stat { text-align: center; }
+    .stat-num {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--black);
+      letter-spacing: -1px;
+    }
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--gray-500);
+      font-weight: 500;
+      margin-top: 0.1rem;
+    }
+
+    /* ── SECTION WRAPPER ── */
+    section { padding: 100px 6vw; }
+
+    .section-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 900;
+      letter-spacing: -1px;
+      line-height: 1.15;
+      max-width: 560px;
+    }
+
+    .section-sub {
+      color: var(--gray-500);
+      font-size: 1rem;
+      margin-top: 0.75rem;
+      max-width: 480px;
+      line-height: 1.7;
+    }
+
+    /* ── SERVICES ── */
+    #services { background: var(--gray-50); }
+
+    .services-header { margin-bottom: 3.5rem; }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      background: var(--white);
+      border: 1px solid rgba(108,71,255,0.1);
+      border-radius: var(--radius);
+      padding: 2rem;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(108,71,255,0.1);
+    }
+
+    .service-icon {
+      width: 52px; height: 52px;
+      background: var(--gray-100);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+      font-size: 1.5rem;
+    }
+
+    .service-card h3 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+    }
+
+    .service-card p {
+      font-size: 0.9rem;
+      color: var(--gray-500);
+      line-height: 1.65;
+    }
+
+    /* ── PROCESS ── */
+    #process { background: var(--white); }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      margin-top: 3.5rem;
+      counter-reset: step;
+    }
+
+    .process-step {
+      position: relative;
+      padding-left: 1rem;
+      counter-increment: step;
+    }
+
+    .step-num {
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: var(--gray-100);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .process-step h3 {
+      font-size: 1rem;
+      font-weight: 800;
+      margin-bottom: 0.4rem;
+    }
+
+    .process-step p {
+      font-size: 0.88rem;
+      color: var(--gray-500);
+      line-height: 1.65;
+    }
+
+    /* ── PORTFOLIO ── */
+    #portfolio { background: var(--gray-50); }
+
+    .portfolio-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .portfolio-card {
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,0.06);
+      transition: transform var(--transition), box-shadow var(--transition);
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .portfolio-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+    }
+
+    .portfolio-thumb {
+      width: 100%;
+      aspect-ratio: 16/10;
+      object-fit: cover;
+      display: block;
+    }
+
+    .portfolio-mock {
+      width: 100%;
+      aspect-ratio: 16/10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .portfolio-info { padding: 1.4rem 1.5rem 1.5rem; }
+
+    .portfolio-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+
+    .portfolio-info h3 {
+      font-size: 1rem;
+      font-weight: 800;
+      margin-bottom: 0.3rem;
+    }
+
+    .portfolio-info p {
+      font-size: 0.85rem;
+      color: var(--gray-500);
+    }
+
+    /* ── TESTIMONIALS ── */
+    #testimonials { background: var(--white); }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+    }
+
+    .testimonial-card {
+      background: var(--gray-50);
+      border: 1px solid rgba(108,71,255,0.08);
+      border-radius: var(--radius);
+      padding: 2rem;
+    }
+
+    .stars {
+      color: #f59e0b;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      letter-spacing: 2px;
+    }
+
+    .testimonial-card blockquote {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--gray-700);
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .author-avatar {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+
+    .author-name {
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .author-role {
+      font-size: 0.8rem;
+      color: var(--gray-500);
+    }
+
+    /* ── PRICING ── */
+    #pricing { background: var(--gray-50); }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+      max-width: 900px;
+    }
+
+    .pricing-card {
+      background: var(--white);
+      border: 1px solid rgba(108,71,255,0.1);
+      border-radius: var(--radius);
+      padding: 2rem;
+      position: relative;
+    }
+
+    .pricing-card.featured {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--white);
+    }
+
+    .featured-badge {
+      position: absolute;
+      top: -12px; left: 50%; transform: translateX(-50%);
+      background: #f59e0b;
+      color: var(--black);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 0.3rem 0.9rem;
+      border-radius: 100px;
+    }
+
+    .pricing-plan {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    .pricing-card.featured .pricing-plan { color: rgba(255,255,255,0.7); }
+
+    .pricing-price {
+      font-size: 2.8rem;
+      font-weight: 900;
+      letter-spacing: -2px;
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+
+    .pricing-sub {
+      font-size: 0.85rem;
+      color: var(--gray-500);
+      margin-bottom: 1.5rem;
+    }
+    .pricing-card.featured .pricing-sub { color: rgba(255,255,255,0.65); }
+
+    .pricing-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      margin-bottom: 2rem;
+    }
+
+    .pricing-features li {
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .pricing-features li::before {
+      content: '✓';
+      font-weight: 900;
+      color: var(--accent);
+      font-size: 0.8rem;
+      flex-shrink: 0;
+    }
+    .pricing-card.featured .pricing-features li::before { color: var(--accent2); }
+
+    .btn-outline {
+      display: block;
+      text-align: center;
+      padding: 0.85rem;
+      border-radius: 9px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-decoration: none;
+      border: 1.5px solid var(--accent);
+      color: var(--accent);
+      transition: background var(--transition), color var(--transition);
+    }
+    .btn-outline:hover { background: var(--accent); color: var(--white); }
+
+    .pricing-card.featured .btn-outline {
+      background: var(--white);
+      color: var(--accent);
+      border-color: var(--white);
+    }
+    .pricing-card.featured .btn-outline:hover { background: rgba(255,255,255,0.85); }
+
+    /* ── CTA BANNER ── */
+    #cta {
+      background: var(--black);
+      color: var(--white);
+      text-align: center;
+      padding: 100px 6vw;
+    }
+
+    #cta .section-label { color: var(--accent2); }
+
+    #cta .section-title {
+      color: var(--white);
+      margin: 0 auto 1rem;
+      max-width: 640px;
+    }
+
+    #cta .section-sub {
+      color: rgba(255,255,255,0.55);
+      margin: 0 auto 2.5rem;
+    }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--white); }
+
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+      max-width: 960px;
+    }
+
+    @media (max-width: 700px) {
+      .contact-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+
+    .contact-info h2 {
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 1rem;
+      line-height: 1.15;
+    }
+
+    .contact-info p {
+      color: var(--gray-500);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+      color: var(--gray-700);
+    }
+
+    .contact-detail span:first-child {
+      font-size: 1.1rem;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    @media (max-width: 500px) { .form-row { grid-template-columns: 1fr; } }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      font-family: inherit;
+      font-size: 0.95rem;
+      border: 1.5px solid #e5e7eb;
+      border-radius: 9px;
+      background: var(--white);
+      color: var(--black);
+      outline: none;
+      transition: border-color var(--transition);
+    }
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--accent);
+    }
+
+    textarea { resize: vertical; min-height: 130px; }
+
+    form .btn-primary {
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 1rem;
+      width: 100%;
+      text-align: center;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 2.5rem 6vw;
+      font-size: 0.85rem;
+    }
+    footer a { color: var(--accent2); text-decoration: none; }
+    footer .footer-logo {
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    footer .footer-logo span { color: var(--accent2); }
+
+    /* ── RESPONSIVE NAV ── */
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hero-stats { gap: 1.5rem; }
+    }
+
+    /* ── SCROLL FADE ANIMATION ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV ── -->
+  <nav>
+    <a href="#hero" class="nav-logo">Max<span>Scales</span></a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#portfolio">Work</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section id="hero">
+    <div>
+      <div class="hero-badge">✦ Web Design &amp; Development</div>
+      <h1 class="hero-title">
+        Websites that <span class="highlight">scale</span><br/>your business
+      </h1>
+      <p class="hero-sub">
+        We build fast, modern, conversion-focused websites — from landing pages to full-scale web apps. No templates. No fluff.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Start a Project</a>
+        <a href="#portfolio" class="btn-secondary">See Our Work</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num">40+</div>
+          <div class="stat-label">Sites Delivered</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Client Satisfaction</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">48h</div>
+          <div class="stat-label">Avg. First Draft</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SERVICES ── -->
+  <section id="services">
+    <div class="services-header fade-up">
+      <div class="section-label">What We Do</div>
+      <h2 class="section-title">Everything your website needs</h2>
+      <p class="section-sub">End-to-end web solutions — from the first pixel to the final launch.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card fade-up">
+        <div class="service-icon">🎨</div>
+        <h3>Custom Web Design</h3>
+        <p>Pixel-perfect designs tailored to your brand. We don't use cookie-cutter templates — every site is built from the ground up.</p>
+      </div>
+      <div class="service-card fade-up">
+        <div class="service-icon">⚡</div>
+        <h3>Performance Optimization</h3>
+        <p>Lightning-fast load times and perfect Lighthouse scores. Speed isn't optional — it's built into everything we ship.</p>
+      </div>
+      <div class="service-card fade-up">
+        <div class="service-icon">📱</div>
+        <h3>Responsive &amp; Mobile-First</h3>
+        <p>Your site will look and work flawlessly on every screen — phones, tablets, and desktops.</p>
+      </div>
+      <div class="service-card fade-up">
+        <div class="service-icon">🔍</div>
+        <h3>SEO Foundation</h3>
+        <p>Clean semantic code, proper meta structure, and page speed baked in — giving you a strong SEO head start from day one.</p>
+      </div>
+      <div class="service-card fade-up">
+        <div class="service-icon">🛒</div>
+        <h3>E-Commerce</h3>
+        <p>Shopify and WooCommerce stores built to convert — with smooth checkout flows and product pages that sell.</p>
+      </div>
+      <div class="service-card fade-up">
+        <div class="service-icon">🔧</div>
+        <h3>Ongoing Maintenance</h3>
+        <p>We don't disappear after launch. Monthly care plans keep your site secure, updated, and running smoothly.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROCESS ── -->
+  <section id="process">
+    <div class="fade-up">
+      <div class="section-label">How It Works</div>
+      <h2 class="section-title">From idea to live site — fast</h2>
+    </div>
+    <div class="process-grid">
+      <div class="process-step fade-up">
+        <div class="step-num">01</div>
+        <h3>Discovery Call</h3>
+        <p>We learn about your business, goals, and vision. You'll know exactly what to expect before we write a single line of code.</p>
+      </div>
+      <div class="process-step fade-up">
+        <div class="step-num">02</div>
+        <h3>Design &amp; Prototype</h3>
+        <p>We create a full design mockup for your review. Revise until it's exactly right — then we build.</p>
+      </div>
+      <div class="process-step fade-up">
+        <div class="step-num">03</div>
+        <h3>Development</h3>
+        <p>Clean, fast, accessible code. We build with modern tools and test across all devices and browsers.</p>
+      </div>
+      <div class="process-step fade-up">
+        <div class="step-num">04</div>
+        <h3>Launch &amp; Handoff</h3>
+        <p>We handle deployment, DNS, and final checks. You get a full walkthrough and everything you need to run your site.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PORTFOLIO ── -->
+  <section id="portfolio">
+    <div class="portfolio-header fade-up">
+      <div>
+        <div class="section-label">Our Work</div>
+        <h2 class="section-title">Recent projects</h2>
+      </div>
+      <a href="#contact" class="btn-primary" style="white-space:nowrap">Start Yours →</a>
+    </div>
+    <div class="portfolio-grid">
+      <a href="#contact" class="portfolio-card fade-up">
+        <img class="portfolio-thumb" src="https://www.wordstream.com/wp-content/uploads/2022/07/nonprofit-website-examples-iwmf.png" alt="Bloom Botanicals website" loading="lazy" />
+        <div class="portfolio-info">
+          <div class="portfolio-tag">Empowerment</div>
+          <h3>IWMA</h3>
+          <p>Media Foundation empowering women globally.</p>
+        </div>
+      </a>
+      <a href="#contact" class="portfolio-card fade-up">
+        <img class="portfolio-thumb" src="https://cdn.cmsfly.com/635bcad9b8a74e0091632998/image-ZI9Na7.png" alt="Peak Analytics website" loading="lazy" />
+        <div class="portfolio-info">
+          <div class="portfolio-tag">Charity Page</div>
+          <h3>Charity : Water</h3>
+          <p>A Charity helping countries get access to clean water.</p>
+        </div>
+      </a>
+      <a href="#contact" class="portfolio-card fade-up">
+        <img class="portfolio-thumb" src="https://cdn.prod.website-files.com/687e8d1b96312cc631cafec7/68c490cf1202aaaa3643f2f0_65c183700d8fbc2492a6c314_6531361ccf5757c2e991e9fb_6pWiS1br6sImopelr9oFycse8XLyhAhsekWbiO9joSDCA1C1A8WdoqGUwSQ27hdFGHSQLYcPNW6LbG0Mj-y0shVQpObaToGnAWatUFwUItJYcEGgpcPj4A-RMiEubBUsOMT5qMlTw5n2wnsvvbA9pHo.png" alt="Nova Kitchen website" loading="lazy" />
+        <div class="portfolio-info">
+          <div class="portfolio-tag">Gym</div>
+          <h3>Rise Athlete</h3>
+          <p>An Athletic training facility helping individuals reach their peak performance.</p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ── TESTIMONIALS ── -->
+  <section id="testimonials">
+    <div class="fade-up">
+      <div class="section-label">Client Love</div>
+      <h2 class="section-title">Don't just take our word for it</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card fade-up">
+        <div class="stars">★★★★★</div>
+        <blockquote>"MaxScales delivered a stunning site in under a week. Our online sales doubled within the first month of launch. Genuinely impressed."</blockquote>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="background:linear-gradient(135deg,#6c47ff,#a78bfa)">S</div>
+          <div>
+            <div class="author-name">Sarah M.</div>
+            <div class="author-role">Owner, IWMA</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-up">
+        <div class="stars">★★★★★</div>
+        <blockquote>"The attention to detail is unreal. They understood our brand better than we did and translated it perfectly into the design."</blockquote>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="background:linear-gradient(135deg,#0f172a,#475569)">J</div>
+          <div>
+            <div class="author-name">James R.</div>
+            <div class="author-role">CEO, Charity : Water</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-up">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Fast, professional, and communicative. The whole process was smooth from start to finish. Our new site gets compliments every single day."</blockquote>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="background:linear-gradient(135deg,#f59e0b,#ef4444)">L</div>
+          <div>
+            <div class="author-name">Lena K.</div>
+            <div class="author-role">GM, Rise Athlete</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PRICING ── -->
+  <section id="pricing">
+    <div class="fade-up">
+      <div class="section-label">Pricing</div>
+      <h2 class="section-title">Simple, transparent pricing</h2>
+      <p class="section-sub">No hidden fees. No surprises. Just great work at fair prices.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card fade-up">
+        <div class="pricing-plan">Starter</div>
+        <div class="pricing-price">$799</div>
+        <div class="pricing-sub">One-time · best for new businesses</div>
+        <ul class="pricing-features">
+          <li>Up to 5 pages</li>
+          <li>Mobile responsive</li>
+          <li>Contact form</li>
+          <li>Basic SEO setup</li>
+          <li>1 round of revisions</li>
+        </ul>
+        <a href="#contact" class="btn-outline">Get Started</a>
+      </div>
+      <div class="pricing-card featured fade-up">
+        <div class="featured-badge">Most Popular</div>
+        <div class="pricing-plan">Growth</div>
+        <div class="pricing-price">$1,799</div>
+        <div class="pricing-sub">One-time · best for growing brands</div>
+        <ul class="pricing-features">
+          <li>Up to 15 pages</li>
+          <li>Custom animations</li>
+          <li>CMS integration</li>
+          <li>Full SEO foundation</li>
+          <li>3 rounds of revisions</li>
+          <li>30-day post-launch support</li>
+        </ul>
+        <a href="#contact" class="btn-outline">Get Started</a>
+      </div>
+      <div class="pricing-card fade-up">
+        <div class="pricing-plan">Pro</div>
+        <div class="pricing-price">Custom</div>
+        <div class="pricing-sub">For complex or ongoing projects</div>
+        <ul class="pricing-features">
+          <li>Unlimited pages</li>
+          <li>E-commerce / web app</li>
+          <li>Custom integrations</li>
+          <li>Ongoing maintenance</li>
+          <li>Priority support</li>
+        </ul>
+        <a href="#contact" class="btn-outline">Let's Talk</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ── -->
+  <section id="cta">
+    <div class="section-label">Ready?</div>
+    <h2 class="section-title">Let's build something great together</h2>
+    <p class="section-sub">Tell us about your project — we'll get back to you within 24 hours.</p>
+    <a href="#contact" class="btn-primary">Get Your Free Quote</a>
+  </section>
+
+  <!-- ── CONTACT ── -->
+  <section id="contact">
+    <div class="contact-wrap">
+      <div class="contact-info fade-up">
+        <div class="section-label">Contact Us</div>
+        <h2>Get a free quote</h2>
+        <p>Fill out the form and we'll get back to you within 24 hours with a custom proposal — no commitment required.</p>
+        <div class="contact-details">
+          <div class="contact-detail"><span>📧</span><span>hello@maxscales.com</span></div>
+          <div class="contact-detail"><span>📍</span><span>Available worldwide · Remote-first</span></div>
+          <div class="contact-detail"><span>⏱</span><span>Response within 24 hours</span></div>
+        </div>
+      </div>
+      <form class="fade-up" onsubmit="handleSubmit(event)" id="contact-form">
+        <div class="form-row">
+          <input type="text" name="first_name" placeholder="First name" required autocomplete="given-name" />
+          <input type="text" name="last_name" placeholder="Last name" required autocomplete="family-name" />
+        </div>
+        <input type="email" name="email" placeholder="Email address" required autocomplete="email" />
+        <input type="tel" name="phone" placeholder="Phone number (optional)" autocomplete="tel" />
+        <input type="text" name="business" placeholder="Website or business name" />
+        <select name="service">
+          <option value="" disabled selected>What do you need?</option>
+          <option>New website</option>
+          <option>Redesign existing site</option>
+          <option>E-commerce store</option>
+          <option>Landing page</option>
+          <option>Ongoing maintenance</option>
+          <option>Other</option>
+        </select>
+        <textarea name="message" placeholder="Tell us about your project..."></textarea>
+        <button type="submit" class="btn-primary">Send Message →</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <span class="footer-logo">Max<span>Scales</span></span>
+    <p>© 2026 MaxScales. Built with care. &nbsp;·&nbsp; <a href="#hero">Back to top</a></p>
+  </footer>
+
+  <script>
+    // Scroll fade-in
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+      { threshold: 0.12 }
+    );
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Form submit → Formspree
+    async function handleSubmit(e) {
+      e.preventDefault();
+      const form = e.target;
+      const btn = form.querySelector('button[type="submit"]');
+      const originalText = btn.textContent;
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+
+      try {
+        const res = await fetch('https://formspree.io/f/xaqpvlvz', {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: new FormData(form)
+        });
+        if (res.ok) {
+          btn.textContent = '✓ Message Sent!';
+          btn.style.background = '#16a34a';
+          form.reset();
+          setTimeout(() => {
+            btn.textContent = originalText;
+            btn.style.background = '';
+            btn.disabled = false;
+          }, 4000);
+        } else {
+          throw new Error('Server error');
+        }
+      } catch {
+        btn.textContent = '✗ Failed — try again';
+        btn.style.background = '#dc2626';
+        btn.disabled = false;
+        setTimeout(() => {
+          btn.textContent = originalText;
+          btn.style.background = '';
+        }, 4000);
+      }
+    }
+  </script>
+</body>
+</html>
